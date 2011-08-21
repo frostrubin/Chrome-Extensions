@@ -241,6 +241,7 @@ var obj = document.getElementById("divid");
 obj.innerHTML = req.responseText.between('id="yw-forecast"','<div id="yw-alerts"');
 obj.innerHTML = b + obj.innerHTML
 setWeatherBadge();
+//setWeatherIcon();
 }
 
 function setWeatherBadge() {
@@ -248,8 +249,30 @@ var temp = req.responseText.between('"yw-temp">','<');
 temp = String(temp);
 temp = temp.replace(/&#176;/g, "");
 var strlen = temp.length - 1;
+
 chrome.browserAction.setBadgeText({text:temp});
-chrome.browserAction.setBadgeBackgroundColor({color: [105, 155, 220, 255]})
+
+var s = req.responseText;
+if (s.indexOf('class="night"') != -1) {
+//night
+chrome.browserAction.setBadgeBackgroundColor({color: [110, 105, 120, 255]});
+} else {
+//day
+chrome.browserAction.setBadgeBackgroundColor({color: [105, 155, 220, 255]});
+}
+}
+
+function setWeatherIcon() {
+var canvas = document.getElementById('canv'); 
+        var ctx = canvas.getContext('2d');   
+        myimage = new Image(); 
+        myimage.onload = function() { 
+                     ctx.drawImage(myimage, 0, 0, 19, 19); 
+                 } 
+        myimage.src = 'http://l.yimg.com/a/i/us/nws/weather/gr/30n.png';
+        
+chrome.browserAction.setIcon({imageData:ctx.getImageData(0, 0,
+                  19,19)});
 }
 
 
@@ -258,4 +281,5 @@ chrome.browserAction.setBadgeBackgroundColor({color: [105, 155, 220, 255]})
 <div id="divid">
 
 </div>
+<canvas id="canv" width="19" height="19" style="display:none;"></canvas>
 
