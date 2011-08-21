@@ -162,13 +162,19 @@ padding: 10px 0 5px 10px;
 </style>
 
 <script>
+var favorite = localStorage["yw_uri"];
+  if (favorite) {
+
 var req = new XMLHttpRequest();
 req.open(
     "GET",
-    "http://weather.yahoo.com/germany/hesse/darmstadt-643787/?unit=c",
+    favorite,
     true);
 req.onload = showPhotos;
 req.send(null);
+} else {
+document.write('<div style="margin:5px;">Please enter a Yahoo Weather URI in the Options</div>');
+}
 
 String.prototype.between = function(prefix, suffix) {
   s = this;
@@ -198,30 +204,20 @@ var b = '<div id="yw-forecast" ';
 var obj = document.getElementById("divid");
 obj.innerHTML = req.responseText.between('id="yw-forecast"','<div id="yw-alerts"');
 obj.innerHTML = b + obj.innerHTML
-
-
-
-
-//obj.innerHTML = req.responseText;
-
-
-
- // document.body.appendinnerHTML(req);
-  //for (var i = 0, photo; photo = photos[i]; i++) {
-  //  var img = document.createElement("image");
-  //  img.src = constructImageURL(photo);
-  //  document.body.appendChild(img);
-  //}
+setWeatherBadge();
 }
 
-// See: http://www.flickr.com/services/api/misc.urls.html
-function constructImageURL(photo) {
-  return "http://farm" + photo.getAttribute("farm") +
-      ".static.flickr.com/" + photo.getAttribute("server") +
-      "/" + photo.getAttribute("id") +
-      "_" + photo.getAttribute("secret") +
-      "_s.jpg";
+function setWeatherBadge() {
+var temp = req.responseText.between('"yw-temp">','<');
+temp = String(temp);
+temp = temp.replace(/&#176;/g, "");
+var strlen = temp.length - 1;
+chrome.browserAction.setBadgeText({text:temp});
+chrome.browserAction.setBadgeBackgroundColor({color: [105, 155, 220, 255]})
 }
+
+
+
 </script>
 <div id="divid">
 

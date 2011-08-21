@@ -1,0 +1,50 @@
+<html>
+<head><title>My Test Extension Options</title>
+<style type="text/css">
+#ywlink {font-size: 80%;}
+#status {font-size: 90%; color: grey;}
+</style>
+</head>
+<script type="text/javascript">
+
+// Saves options to localStorage.
+function save_options() {
+  var select = document.getElementById("ywuri");
+  var ywuri = select.value;
+  localStorage["yw_uri"] = ywuri;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var favorite = localStorage["yw_uri"];
+  if (!favorite) {
+    return;
+  }
+  var select = document.getElementById("ywuri");
+  select.value = favorite;
+}
+
+</script>
+
+<body onload="restore_options()">
+
+<h1>Yahoo Weather Extension - Options</h1>
+<h3>Choose a weather URI</h3>
+<input id="ywuri" type="text" size="80" placeholder="http://weather.yahoo.com/germany/hesse/darmstadt-643787/?unit=">
+
+<a id="ywlink" href="">Go to Yahoo Weather to search for a URI</a>
+
+<br>
+<br>
+
+<button onclick="save_options()">Save</button>
+<p id="status"></p>
+</body>
+</html>
