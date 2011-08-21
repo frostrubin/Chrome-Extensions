@@ -1,0 +1,60 @@
+<html>
+  <script>
+    var pollInterval = 1000 * 60; // 1 minute, in milliseconds
+    var req = new XMLHttpRequest();
+    
+    String.prototype.between = function(prefix, suffix) {
+      s = this;
+      var i = s.indexOf(prefix);
+      if (i >= 0) {
+        s = s.substring(i + prefix.length);
+      } else {
+        return '';
+      }
+      if (suffix) {
+        i = s.indexOf(suffix);
+        if (i >= 0) {
+          s = s.substring(0, i);
+        } else {
+          return '';
+        }
+      }
+      return s;
+    }
+    
+    function startRequest() {
+      var favorite = localStorage["yw_uri"];
+      if (favorite) {
+        req.open(
+                 "GET",
+                 favorite,
+                 true);
+        req.onload = setWeatherBadge;
+        req.send(null);
+      }
+      
+      window.setTimeout(startRequest, pollInterval);
+    }
+    
+    function setWeatherBadge() {
+        var temp = req.responseText.between('"yw-temp">','<');
+        temp = String(temp);
+        temp = temp.replace(/&#176;/g, "");
+        var strlen = temp.length - 1;
+
+        chrome.browserAction.setBadgeText({text:temp});
+
+        var s = req.responseText;
+        if (s.indexOf('class="night"') != -1) {
+          //night
+          chrome.browserAction.setBadgeBackgroundColor({color: [110, 105, 120, 255]});
+        } else {
+          //day
+          chrome.browserAction.setBadgeBackgroundColor({color: [105, 155, 220, 255]});
+        }
+    }
+  </script>
+  <body onload="startRequest()">
+  </body>
+</html>
+
