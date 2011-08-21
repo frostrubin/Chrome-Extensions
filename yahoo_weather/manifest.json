@@ -1,0 +1,13 @@
+{
+  "name": "Hello World",
+  "version": "1.0",
+  "description": "The first extension that I made.",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "popup": "popup.html"
+  },
+  "permissions": [
+    "http://weather.yahoo.com/",
+    "http://l.yimg.com/"
+  ]
+}

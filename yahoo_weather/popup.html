@@ -1,0 +1,229 @@
+
+<style>
+* {margin:0px;  }
+
+body {
+font: 13px/1.231 arial,helvetica,clean,sans-serif;
+max-height:370px;
+width: 370px;
+min-width: 360px;
+}
+
+div#divid {
+max-height:360px;
+min-width: 360px;
+overflow: hidden;
+}
+
+
+.action {display:none;}
+#yw-forecast dt {
+float: left;
+min-width: 70px;
+width: 11.0em;
+}
+#yw-forecast dd {
+margin-bottom: 2px;
+z-index: 2;
+}
+/*Hide the two links*/
+div#yw-forecast div.forecast-temp ul {display:none;}
+
+#yw-forecast {
+clear: both;
+position: relative;
+width: 100%;
+min-height: 190px;
+height: 14.6154em;
+background: #CCE1FF url(http://l.yimg.com/a/i/us/nws/weather/crntcondbg_day.gif) repeat-x;
+border-top: 1px solid #5182CE;
+border-left: none;
+border-right: none;
+border-bottom: none;
+padding-left: 5px;
+padding-top:5px;
+border-radius: 5px;
+border: none;
+}
+
+
+
+/* Display the big forecast icon */
+.forecast-icon {
+position: absolute;
+top: 0;
+left: 180px;
+width: 250px;
+height: 130px;
+background-repeat: no-repeat;
+}
+
+#yw-forecast .forecast-temp {
+position: absolute;
+top: 45px;
+right:0px;
+min-width: 200px;
+width: 15.3846em;
+height:300px;
+background: url(http://l.yimg.com/a/i/us/nws/weather/wdgt_day.png) no-repeat;
+_background-image: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://l.yimg.com/a/i/us/nws/weather/wdgt_day.png',sizingMethod='crop');
+z-index: 0;
+}
+
+#yw-forecast .forecast-temp p {
+clear: right;
+text-align: right;
+padding-right: 17px;
+color: white;
+font-size: 85%;
+text-shadow: #315895 0 -1px 1px;
+}
+
+#yw-forecast .forecast-temp #yw-temp {
+float: right;
+color: white;
+text-shadow: #315895 0 -1px 1px;
+font-weight: bold;
+font-size: 260%;
+padding: 5px 15px 2px 0;
+}
+
+div#yw-forecast dl dd {
+position:relative;
+left:-30px;
+}
+
+#wiff {
+background: url(http://l.yimg.com/a/lib/ywc/img/wicons.png);
+}
+
+#yw-fivedayforecast table {
+color: black;
+text-align: center;
+}
+
+#yw-fivedayforecast th {
+color: white;
+width: 15%;
+padding: 1px 0 3px;
+text-transform: uppercase;
+text-align: center;
+font-weight: bold;
+font-size: 85%;
+border-left: 1px solid #5B8DD6;
+border-right: 1px solid #5B8DD6;
+background: #5F90D9 url(http://l.yimg.com/a/i/us/nws/weather/frcstbg_day.gif) repeat-x top right;
+}
+
+#yw-fivedayforecast tr.fiveday-icons td {
+text-align: center;
+padding-top: 5px;
+vertical-align: top;
+font-weight: bold;
+font-size: 92%;
+color: #333;
+}
+
+#yw-fivedayforecast td {
+border-right: 1px solid #C2DAFF;
+border-left: 1px solid #C2DAFF;
+}
+
+#yw-fivedayforecast tr.fiveday-temps td {
+padding: 5px 0 10px;
+color: #333;
+font-weight: bold;
+font-size: 92%;
+padding: 5px 0 5px 0;
+}
+
+#yw-fivedayforecast tr.fiveday-temps div {
+font-weight: normal;
+font-size: 92%;
+padding: 2px 0 0 0;
+}
+
+#yw-fivedayforecast table tbody tr th.nobg {
+display:none;
+}
+
+#yw-fivedayforecast tr.fiveday-icons td.extended {
+display: none;
+}
+
+#yw-forecast em {
+display: block;
+font-size: 77%;
+padding: 10px 0 5px 10px;
+}
+
+
+</style>
+
+<script>
+var req = new XMLHttpRequest();
+req.open(
+    "GET",
+    "http://weather.yahoo.com/germany/hesse/darmstadt-643787/?unit=c",
+    true);
+req.onload = showPhotos;
+req.send(null);
+
+String.prototype.between = function(prefix, suffix) {
+  s = this;
+  var i = s.indexOf(prefix);
+  if (i >= 0) {
+    s = s.substring(i + prefix.length);
+  }
+  else {
+    return '';
+  }
+  if (suffix) {
+    i = s.indexOf(suffix);
+    if (i >= 0) {
+      s = s.substring(0, i);
+    }
+    else {
+      return '';
+    }
+  }
+  return s;
+}
+
+function showPhotos() {
+  //var photos = req.responseXML.getElementsByTagName("photo");
+
+var b = '<div id="yw-forecast" ';
+var obj = document.getElementById("divid");
+obj.innerHTML = req.responseText.between('id="yw-forecast"','<div id="yw-alerts"');
+obj.innerHTML = b + obj.innerHTML
+
+
+
+
+//obj.innerHTML = req.responseText;
+
+
+
+ // document.body.appendinnerHTML(req);
+  //for (var i = 0, photo; photo = photos[i]; i++) {
+  //  var img = document.createElement("image");
+  //  img.src = constructImageURL(photo);
+  //  document.body.appendChild(img);
+  //}
+}
+
+// See: http://www.flickr.com/services/api/misc.urls.html
+function constructImageURL(photo) {
+  return "http://farm" + photo.getAttribute("farm") +
+      ".static.flickr.com/" + photo.getAttribute("server") +
+      "/" + photo.getAttribute("id") +
+      "_" + photo.getAttribute("secret") +
+      "_s.jpg";
+}
+</script>
+<div id="divid">
+
+</div>
+
