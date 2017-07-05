@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="options.css">
+</head>
+<body>
+	<form>
+		<div>
+			<h3>General Page Laout</h3>
+			<input type="checkbox" class="tl-1" name="ck-hide-header" checked>
+			<label for="ck-hide-header">Hide AWS Header</label>
+		</div>
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-add-logout" checked>
+			<label for="ck-add-logout">Add Logout Button</label>			
+		</div>		
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-footer" checked>
+			<label for="ck-hide-footer">Hide AWS Footer</label>			
+		</div>
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-tagnot" checked>
+			<label for="ck-hide-tagnot">Hide "Object Tagging" Notification</label>			
+		</div>
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-oldlink" checked>
+			<label for="ck-hide-oldlink">Hide Link to the old Console</label>			
+		</div>		
+
+
+
+		<div>
+			<h3>Tabs</h3>
+			<input type="checkbox" class="tl-1" name="ck-hide-tabper" checked>
+			<label for="ck-hide-tabper">Hide the "Permissions" Tab</label>			
+		</div>	
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabpercont" checked>
+			<label for="ck-hide-tabpercont">Hide the "Permissions" Tabs content</label>			
+		</div>		
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-tabpro">
+			<label for="ck-hide-tabpro">Hide the "Properties" Tab</label>			
+		</div>	
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabprocont">
+			<label for="ck-hide-tabprocont">Hide the "Properties" Tabs content</label>			
+		</div>			
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabprocontadv" checked>
+			<label for="ck-hide-tabprocontadv">Hide the "Properties" Tabs "Advanced" content</label>			
+		</div>
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-tabmgm">
+			<label for="ck-hide-tabmgm">Hide the "Management" Tab</label>	
+		</div>		
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmcont">
+			<label for="ck-hide-tabmgmcont">Hide the "Management" Tabs content</label>			
+		</div>		
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmlfc">
+			<label for="ck-hide-tabmgmlfc">Hide the "Lifecycle" Button</label>			
+		</div>			
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmana">
+			<label for="ck-hide-tabmgmana">Hide the "Analytics" Button</label>			
+		</div>	
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmmet">
+			<label for="ck-hide-tabmgmmet">Hide the "Metrics" Button</label>			
+		</div>														
+		<div>
+			<input type="checkbox" class="tl-2" name="ck-hide-tabmgminv">
+			<label for="ck-hide-tabmgminv">Hide the "Inventory" Button</label>			
+		</div>		
+
+
+
+		<div>
+			<h3>Features</h3>
+			<h4>Bucket Overview</h4>
+			<input type="checkbox" class="tl-1" name="ck-hide-buckdel" checked>
+			<label for="ck-hide-buckdel">Hide "Delete Bucket" Button</label>			
+		</div>	
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-buckemp" checked>
+			<label for="ck-hide-buckemp">Hide "Empty Bucket" Button</label>			
+		</div>		
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-buckcre" checked>
+			<label for="ck-hide-buckcre">Hide "Create Bucket" Button</label>			
+		</div>		
+		<div>
+			<h4>"Management" Tab</h4>
+			<input type="checkbox" class="tl-1" name="ck-hide-mgmlfcact" checked>
+			<label for="ck-hide-mgmlfcact">Hide Lifecylce Actions</label>			
+		</div>
+		<div>
+			<h4>"Object" Tab</h4>
+			<input type="checkbox" class="tl-1" name="ck-hide-objmkpub" checked>
+			<label for="ck-hide-objmkpub">Hide the "Make Public" Option</label>			
+		</div>	
+		<div>
+			<input type="checkbox" class="tl-1" name="ck-hide-objaddtag" checked>
+			<label for="ck-hide-objaddtag">Hide the "Add Tags" Option</label>			
+		</div>	
+
+
+
+		<div>
+			<h3>Custom Rules</h3>
+		</div>
+		<div>
+			<label for="in-hide-textcontent">Hide Elements with .textContent (; separate multiple values)</label>
+			<input type="text" name="in-hide-textcontent"><br>
+		</div>
+
+
+		<div id="status"></div>
+		<div>
+			<button id="save" type="submit">Save</button>
+		</div>
+	</form>
+
+	<script src="options.js"></script>
+</body>
+</html>

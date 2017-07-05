@@ -1,0 +1,16 @@
+
+.tl-1 {
+	margin-left: 0px;
+}
+
+.tl-2 {
+	margin-left: 40px !important;
+}
+
+input[type="text"] {
+	width: 100%;
+}
+
+#save {
+	margin-top: 1rem;
+}
