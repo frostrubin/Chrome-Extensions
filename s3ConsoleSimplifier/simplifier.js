@@ -212,10 +212,14 @@ var Simplifier = {
   			// Remove things based on user input
   			var longString = String(options['in-hide-textcontent']) + ';';
   			var searchArray = longString.split(';').filter(String);
+  			searchArray = searchArray.map(v => v.toLowerCase());
+
   			var allElements = this.query('body *');
-  			for (var i = 0; i < searchArray.length; ++i) {
-  				var text = searchArray[i];
-  				this.hideBasedOnText(allElements, text, false);
+  			for (var i = 0; i < allElements.length; ++i) {
+  				var element = allElements[i];
+				if (searchArray.includes(element.innerText.trim().toLowerCase())) {
+					this.hide(element);
+				}
   			}
   		}
 	},
@@ -236,19 +240,17 @@ var Simplifier = {
   			this.hide(list[i]);
 		}
 	},
-	hideBasedOnText: function(list, text, searchInChildNodes = true) {
+	hideBasedOnText: function(list, text) {
 		for (var i = 0; i < list.length; ++i) {
 			var element = list[i];
 			if (element.innerText.trim().toLowerCase() == text.toLowerCase()) {
 				// Hide the element itself
 				this.hide(element);
 			} else {
-				if (searchInChildNodes == true) {
-					// Hide a sub-element?
-					for (var j = 0; j < element.childNodes.length; ++j) {
-						if (element.childNodes[j].innerText.trim().toLowerCase() == text.toLowerCase()) {
-							this.hide(element.childNodes[j]);
-						}
+				// Hide a sub-element?
+				for (var j = 0; j < element.childNodes.length; ++j) {
+					if (element.childNodes[j].innerText.trim().toLowerCase() == text.toLowerCase()) {
+						this.hide(element.childNodes[j]);
 					}
 				}
 			}
