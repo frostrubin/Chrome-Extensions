@@ -1,129 +1,221 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="options.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="options.css">
 </head>
+
 <body>
-	<form>
-		<div>
-			<h3>General Page Laout</h3>
-			<input type="checkbox" class="tl-1" name="ck-hide-header" checked>
-			<label for="ck-hide-header">Hide AWS Header</label>
-		</div>
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-add-logout" checked>
-			<label for="ck-add-logout">Add Logout Button</label>			
-		</div>		
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-footer" checked>
-			<label for="ck-hide-footer">Hide AWS Footer</label>			
-		</div>
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-tagnot" checked>
-			<label for="ck-hide-tagnot">Hide "Object Tagging" Notification</label>			
-		</div>
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-oldlink" checked>
-			<label for="ck-hide-oldlink">Hide Link to the old Console</label>			
-		</div>		
+    <table>
+        <tr>
+            <th>S3 Options</th>
+            <th>EC2 Options</th>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <h3>General Page Laout</h3>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-header" checked>
+                    <label for="s3-ck-hide-header">Hide AWS Header</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-add-logout" checked>
+                    <label for="s3-ck-add-logout">Add Logout Button</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-footer" checked>
+                    <label for="s3-ck-hide-footer">Hide AWS Footer</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-tagnot" checked>
+                    <label for="s3-ck-hide-tagnot">Hide "Object Tagging" Notification</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-oldlink" checked>
+                    <label for="s3-ck-hide-oldlink">Hide Link to the old Console</label>
+                </div>
+
+                <div>
+                    <h3>Tabs</h3>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-tabper" checked>
+                    <label for="s3-ck-hide-tabper">Hide the "Permissions" Tab</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabpercont" checked>
+                    <label for="s3-ck-hide-tabpercont">Hide the "Permissions" Tabs content</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-tabpro">
+                    <label for="s3-ck-hide-tabpro">Hide the "Properties" Tab</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabprocont">
+                    <label for="s3-ck-hide-tabprocont">Hide the "Properties" Tabs content</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabprocontadv" checked>
+                    <label for="s3-ck-hide-tabprocontadv">Hide the "Properties" Tabs "Advanced" content</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-tabmgm">
+                    <label for="s3-ck-hide-tabmgm">Hide the "Management" Tab</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabmgmcont">
+                    <label for="s3-ck-hide-tabmgmcont">Hide the "Management" Tabs content</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabmgmlfc">
+                    <label for="s3-ck-hide-tabmgmlfc">Hide the "Lifecycle" Button</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabmgmana">
+                    <label for="s3-ck-hide-tabmgmana">Hide the "Analytics" Button</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabmgmmet">
+                    <label for="s3-ck-hide-tabmgmmet">Hide the "Metrics" Button</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="s3-ck-hide-tabmgminv">
+                    <label for="s3-ck-hide-tabmgminv">Hide the "Inventory" Button</label>
+                </div>
+
+                <div>
+                    <h3>Features</h3>
+                    <h4>Bucket Overview</h4>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-buckdel" checked>
+                    <label for="s3-ck-hide-buckdel">Hide "Delete Bucket" Button</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-buckemp" checked>
+                    <label for="s3-ck-hide-buckemp">Hide "Empty Bucket" Button</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-buckcre" checked>
+                    <label for="s3-ck-hide-buckcre">Hide "Create Bucket" Button</label>
+                </div>
+                <div>
+                    <h4>"Management" Tab</h4>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-mgmlfcact" checked>
+                    <label for="s3-ck-hide-mgmlfcact">Hide Lifecylce Actions</label>
+                </div>
+                <div>
+                    <h4>"Object" Tab</h4>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-objmkpub" checked>
+                    <label for="s3-ck-hide-objmkpub">Hide the "Make Public" Option</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="s3-ck-hide-objaddtag" checked>
+                    <label for="s3-ck-hide-objaddtag">Hide the "Add Tags" Option</label>
+                </div>
+
+                <div>
+                    <h3>Custom Rules</h3>
+                </div>
+                <div>
+                    <label for="s3-in-hide-textcontent">Hide Elements with .textContent (; separate multiple values)</label>
+                    <input type="text" name="s3-in-hide-textcontent">
+                    <br>
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <h3>General Page Laout</h3>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-header" checked>
+                    <label for="ec2-ck-hide-header">Hide AWS Header</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="ec2-ck-add-logout" checked>
+                    <label for="ec2-ck-add-logout">Add Logout Button</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-footer" checked>
+                    <label for="ec2-ck-hide-footer">Hide AWS Footer</label>
+                </div>
+
+                <div>
+                    <h3>Left-Hand Linkbar</h3>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-smsr" checked>
+                    <label for="ec2-ck-hide-left-menu-smsr">Hide "Systems Manager Shared Resources"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-sms" checked>
+                    <label for="ec2-ck-hide-left-menu-sms">Hide "Systems Manager Services"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-autoscale" checked>
+                    <label for="ec2-ck-hide-left-menu-autoscale">Hide "Auto Scaling" Tab</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-loadbalancing" checked>
+                    <label for="ec2-ck-hide-left-menu-loadbalancing">Hide "Load Balancing"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-networkandsec">
+                    <label for="ec2-ck-hide-left-menu-networkandsec">Hide "Network & Security"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-elasticblock">
+                    <label for="ec2-ck-hide-left-menu-elasticblock">Hide "Elastic Block Store"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-images">
+                    <label for="ec2-ck-hide-left-menu-images">Hide "Images"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-instances">
+                    <label for="ec2-ck-hide-left-menu-instances">Hide "Instances"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="ec2-ck-hide-left-submenu-dedichost" checked>
+                    <label for="ec2-ck-hide-left-submenu-dedichost">Hide "Dedicated Hosts"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="ec2-ck-hide-left-submenu-schedins" checked>
+                    <label for="ec2-ck-hide-left-submenu-schedins">Hide "Scheduled Instances"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-2" name="ec2-ck-hide-left-submenu-reservedins" checked>
+                    <label for="ec2-ck-hide-left-submenu-reservedins">Hide "Reserved Instances"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-tags">
+                    <label for="ec2-ck-hide-left-menu-tags">Hide "Tags" Link</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-left-menu-reports">
+                    <label for="ec2-ck-hide-left-menu-reports">Hide "Reports" Link</label>
+                </div>                
 
 
 
-		<div>
-			<h3>Tabs</h3>
-			<input type="checkbox" class="tl-1" name="ck-hide-tabper" checked>
-			<label for="ck-hide-tabper">Hide the "Permissions" Tab</label>			
-		</div>	
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabpercont" checked>
-			<label for="ck-hide-tabpercont">Hide the "Permissions" Tabs content</label>			
-		</div>		
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-tabpro">
-			<label for="ck-hide-tabpro">Hide the "Properties" Tab</label>			
-		</div>	
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabprocont">
-			<label for="ck-hide-tabprocont">Hide the "Properties" Tabs content</label>			
-		</div>			
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabprocontadv" checked>
-			<label for="ck-hide-tabprocontadv">Hide the "Properties" Tabs "Advanced" content</label>			
-		</div>
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-tabmgm">
-			<label for="ck-hide-tabmgm">Hide the "Management" Tab</label>	
-		</div>		
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmcont">
-			<label for="ck-hide-tabmgmcont">Hide the "Management" Tabs content</label>			
-		</div>		
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmlfc">
-			<label for="ck-hide-tabmgmlfc">Hide the "Lifecycle" Button</label>			
-		</div>			
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmana">
-			<label for="ck-hide-tabmgmana">Hide the "Analytics" Button</label>			
-		</div>	
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabmgmmet">
-			<label for="ck-hide-tabmgmmet">Hide the "Metrics" Button</label>			
-		</div>														
-		<div>
-			<input type="checkbox" class="tl-2" name="ck-hide-tabmgminv">
-			<label for="ck-hide-tabmgminv">Hide the "Inventory" Button</label>			
-		</div>		
+                <div>
+                    <h3>Dashboard</h3>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-dash-right-addmarkt" checked>
+                    <label for="ec2-ck-hide-dash-right-addmarkt">Hide "Additional Information" & "AWS Marketplace"</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="tl-1" name="ec2-ck-hide-dash-middle-createinst" checked>
+                    <label for="ec2-ck-hide-dash-middle-createinst">Hide the "Create Instance" Button in the Dashboard</label>
+                </div>                
 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="status"></div>
+                <div>
+                    <button id="save" type="submit">Save</button>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-
-		<div>
-			<h3>Features</h3>
-			<h4>Bucket Overview</h4>
-			<input type="checkbox" class="tl-1" name="ck-hide-buckdel" checked>
-			<label for="ck-hide-buckdel">Hide "Delete Bucket" Button</label>			
-		</div>	
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-buckemp" checked>
-			<label for="ck-hide-buckemp">Hide "Empty Bucket" Button</label>			
-		</div>		
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-buckcre" checked>
-			<label for="ck-hide-buckcre">Hide "Create Bucket" Button</label>			
-		</div>		
-		<div>
-			<h4>"Management" Tab</h4>
-			<input type="checkbox" class="tl-1" name="ck-hide-mgmlfcact" checked>
-			<label for="ck-hide-mgmlfcact">Hide Lifecylce Actions</label>			
-		</div>
-		<div>
-			<h4>"Object" Tab</h4>
-			<input type="checkbox" class="tl-1" name="ck-hide-objmkpub" checked>
-			<label for="ck-hide-objmkpub">Hide the "Make Public" Option</label>			
-		</div>	
-		<div>
-			<input type="checkbox" class="tl-1" name="ck-hide-objaddtag" checked>
-			<label for="ck-hide-objaddtag">Hide the "Add Tags" Option</label>			
-		</div>	
-
-
-
-		<div>
-			<h3>Custom Rules</h3>
-		</div>
-		<div>
-			<label for="in-hide-textcontent">Hide Elements with .innerText (; separate multiple values)</label>
-			<input type="text" name="in-hide-textcontent"><br>
-		</div>
-
-
-		<div id="status"></div>
-		<div>
-			<button id="save" type="submit">Save</button>
-		</div>
-	</form>
-
-	<script src="options.js"></script>
+    <script src="options.js"></script>
 </body>
+
 </html>

@@ -25,7 +25,8 @@ function save_options() {
 function restore_options() {
     chrome.storage.sync.get(function(syncOpt) {
       if (has_any_property(syncOpt) == false) {
-        // Nothing synced yet? Then the standards hard-coded in HTML apply. Save them once, then return
+        // Nothing synced yet? Then the standards hard-coded in HTML apply. 
+        // Save them once, then return
         save_options();
         return;
       }

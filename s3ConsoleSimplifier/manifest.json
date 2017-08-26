@@ -1,19 +1,36 @@
 {
   "manifest_version": 2,
-  "name": "S3 Console Simplifier",
-  "description": "Simplify the S3 Console",
+  "name": "S3 & EC2 Console Simplifier",
+  "description": "Simplify the S3 & EC2 Console",
   "version": "0.1",
   "permissions": [
     "https://console.aws.amazon.com/s3/*",
-    "storage"
+    "https://*.console.aws.amazon.com/ec2sp/v1/*",
+    "https://*.console.aws.amazon.com/ec2/v2/*",
+    "storage",
+    "downloads",
+    "webNavigation", 
+    "tabs"
   ],
   "content_scripts": [
     {
       "matches": ["https://console.aws.amazon.com/s3/*"],
-      "js": ["simplifier.js"],
+      "js": ["s3simplifier.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://*.console.aws.amazon.com/ec2sp/v1/*",
+        "https://*.console.aws.amazon.com/ec2/v2/*"
+      ],
+      "js": ["ec2simplifier.js"],
       "run_at": "document_end"
     }
-  ],
+  ],   
+  "background": {
+    "persistent": false,
+    "scripts": ["s3downloader.js"]
+  },  
   "options_ui": {
     "page": "options.html",
     "chrome_style": true
