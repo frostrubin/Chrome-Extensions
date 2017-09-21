@@ -60,6 +60,12 @@ var Simplifier = {
 			this.hideAll(oldConsoleLinks);
 		}
 
+		if (options['s3-ck-hide-objsidepanel'] == true) {
+			// Hide the Object Sidepanel
+			var sidepanels = this.query('storage-console-config-panel.side-config-panel');
+			this.hideAll(sidepanels);
+		}
+
 		var tabs = this.query('ul.awsui-tabs-container');
 		if (options['s3-ck-hide-tabper'] == true) {
 			// Hide the Permissions Tab for a Bucket
