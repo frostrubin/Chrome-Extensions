@@ -1,0 +1,14 @@
+This text contains german umlauts.
+
+It was typed on an american (EN-US) keyboard layout.
+
+Thanks to UmlautHelper, it was easy to get german umlauts into the text.
+
+"Frühstück ohne Möhren, macht nicht glücklich."
+"Ähnliches gilt übrigens auch für Brötchen, hörte ich."
+
+This is achieved, by 
+1. Installing this extension
+2. Switching to Keyboard Language "UmlautHelper" in the Chrome OS Settings
+3. Rapidly-typing key combinations ae or oe or ue or sss
+   Or their uppercase counterparts
