@@ -1,5 +1,6 @@
 {
   "name": "Umlaut Helper",
+  "short_name": "UmlautHelper",
   "version": "1.0",
   "manifest_version": 2,
   "description": "Auto-Correct Umlaut misspellings",
@@ -16,14 +17,15 @@
       "name": "Umlaut Helper",
       "type": "ime",
       "id": "umlaut_helper",
-      "description": "Umlaut Helper",  // A user visible description
-      "language": "en-US",             // The primary language this IME is used for
-      "layouts": ["us::eng"]           // The supported keyboard layouts for this IME
+      "description": "Umlaut Helper",
+      "language": "en-US",
+      "layouts": ["us::eng"]
     }
-  ],
+  ], 
   "icons": { 
      "16": "icons/016.png",
     "128": "icons/128.png",
     "512": "icons/512.png"
-  } 
+  },
+  "browser_action": { }
 }
