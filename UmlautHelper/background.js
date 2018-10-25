@@ -3,6 +3,9 @@ console.log("Initializing IME");
 var ime_api = chrome.input.ime;
 var context_id = -1;
 
+var extensionToggle = 1;
+chrome.browserAction.setBadgeText({text: "ON"});
+
 var UmlautKeyCombinationHelper = {
     memory: '',
     dictionary: {'ae':'ä','oe':'ö','ue':'ü','AE':'Ä','OE':'Ö','UE':'Ü'},
@@ -129,8 +132,14 @@ var UmlautDictionaryHelper = {
     },
     onKeyDown: function(engineID, keyData) {
         // Special Key Combo: Enable/Disable this special Helper
-        if (keyData.key == 'l' && keyData.ctrlKey && keyData.altKey) {
-            this.run = !this.run;
+        //if (keyData.key == 'l' && keyData.ctrlKey && keyData.altKey) {
+        //    this.run = !this.run;
+        //}
+
+        if (extensionToggle == 2) {
+            this.run = true;
+        } else {
+            this.run = false;
         }
 
         if (!this.run) {
@@ -230,6 +239,10 @@ ime_api.onKeyEvent.addListener(function(engineID, keyData) {
         return false;
     }
 
+    if (extensionToggle == 3) {
+        return false;
+    }
+
     var result = [];
     if (keyData.type == 'keydown') {
         result.push(UmlautKeyCombinationHelper.onKeyDown(engineID, keyData));
@@ -247,4 +260,24 @@ ime_api.onKeyEvent.addListener(function(engineID, keyData) {
     console.log('Returning ' + retVal);
     ime_api.keyEventHandled(keyData.requestId, retVal);
     return retVal;
+});
+
+chrome.browserAction.onClicked.addListener(function() {
+    console.log('browserActionOnClick:');
+
+    extensionToggle++;
+    if (extensionToggle > 3){
+        extensionToggle = 1;
+    }
+
+    switch(extensionToggle) {
+    case 2:
+        chrome.browserAction.setBadgeText({text: "DICT"});
+        break;
+    case 3:
+        chrome.browserAction.setBadgeText({text: "OFF"});
+        break;
+    default:
+        chrome.browserAction.setBadgeText({text: "ON"});
+    }
 });
