@@ -1,10 +1,28 @@
+var extensionToggle = 1;
+
+chrome.action.onClicked.addListener(function() {
+    console.log('action.OnClick:');
+
+    extensionToggle++;
+    if (extensionToggle > 2){
+        extensionToggle = 1;
+    }
+
+    switch(extensionToggle) {
+    case 2:
+        chrome.action.setBadgeText({text: "OFF"});
+        break;
+    default:
+        chrome.action.setBadgeText({text: "ON"});
+    }
+});
+
 console.log("Initializing IME");
 
 var ime_api = chrome.input.ime;
 var context_id = -1;
 
-var extensionToggle = 1;
-chrome.browserAction.setBadgeText({text: "ON"});
+chrome.action.setBadgeText({text: "ON"});
 
 var UmlautKeyCombinationHelper = {
     memory: '',
@@ -115,92 +133,6 @@ var EuroSignHelper = {
     },      
 }
 
-var UmlautDictionaryHelper = {
-    run: false,
-    memory: '', 
-    word_separators: [' ','Enter','.',','],
-    word_dict: {},   
-    onLoad: function() {
-        fetch(chrome.runtime.getURL('umlaut_dict.json')).then(response => {
-            return response.json()
-        }).then(data => {
-            this.word_dict = data;
-        });  
-    },
-    clear: function() {
-        this.memory = '';
-    },
-    onKeyDown: function(engineID, keyData) {
-        // Special Key Combo: Enable/Disable this special Helper
-        //if (keyData.key == 'l' && keyData.ctrlKey && keyData.altKey) {
-        //    this.run = !this.run;
-        //}
-
-        if (extensionToggle == 2) {
-            this.run = true;
-        } else {
-            this.run = false;
-        }
-
-        if (!this.run) {
-            return false;
-        }
-
-        // Only run for normal Alphabet Characters
-        if (keyData.key.length > 1) {
-            return false;
-        }
-
-        // Only run if no special Modifier is present
-        if (keyData.ctrlKey || keyData.altKey || keyData.metaKey) {
-            return false;
-        }
-
-        // Append to memory
-        var old_memory = this.memory;
-        this.memory += keyData.key
-        
-        // In case of Character deletions: Deal with them!
-        if (keyData.code == 'Backspace') {
-            this.memory = old_memory.slice(0, -1);
-        }
-
-        console.log('UmlautDictionaryCombinationHelperMemory ' + this.memory); 
-
-        // On Special Word Separators: Do lookup
-        if (! this.word_separators.includes(keyData.key)) {
-            return false;
-        }        
-
-        // Clear Memory (because a special character has been reached)
-        this.memory = '';
-        
-        var replacement = this.word_dict[old_memory];
-        if (typeof replacement == 'undefined') {
-            return false;
-        }        
-
-        // Still here? Then Replace!
-        var length = old_memory.length;
-        var offset = length * -1;
-        replacement += keyData.key;
-        ime_api.deleteSurroundingText({'engineID': engineID, 
-                                       'contextID': context_id, 
-                                       'offset': offset, 
-                                       'length': length}, function(){
-            ime_api.commitText({'contextID': context_id,
-                                'text': replacement});
-        });         
-        
-        return true;                
-    },
-    onKeyUp: function(engineID, keyData) {
-        return false;
-    },
-}
-
-UmlautDictionaryHelper.onLoad();
-
 ime_api.onFocus.addListener(function(context) {
     console.log('onFocus:' + context.contextID);
     switch(context.type) {
@@ -225,13 +157,13 @@ ime_api.onBlur.addListener(function(contextID) {
     context_id = -1;
 });
 
-ime_api.onActivate.addListener(function(engineID) {
-    //console.log('onActivate:' + engineID);
-});
+//ime_api.onActivate.addListener(function(engineID) {
+//    console.log('onActivate:' + engineID);
+//});
 
-ime_api.onDeactivated.addListener(function(engineID) {
-    //console.log('onDeactivated:' + engineID);
-});
+//ime_api.onDeactivated.addListener(function(engineID) {
+//    console.log('onDeactivated:' + engineID);
+//});
 
 ime_api.onKeyEvent.addListener(function(engineID, keyData) {
     console.log('onKeyEvent:' + keyData.key + " context: " + context_id);
@@ -248,36 +180,14 @@ ime_api.onKeyEvent.addListener(function(engineID, keyData) {
         result.push(UmlautKeyCombinationHelper.onKeyDown(engineID, keyData));
         result.push(EuroSignHelper.onKeyDown(engineID, keyData));
         result.push(SharpSHelper.onKeyDown(engineID, keyData));
-        result.push(UmlautDictionaryHelper.onKeyDown(engineID, keyData));
     } else if (keyData.type == 'keyup') {
         result.push(UmlautKeyCombinationHelper.onKeyUp(engineID, keyData));
         result.push(EuroSignHelper.onKeyUp(engineID, keyData));
         result.push(SharpSHelper.onKeyUp(engineID, keyData));     
-        result.push(UmlautDictionaryHelper.onKeyUp(engineID, keyData)); 
     }
 
     var retVal = result.includes(true);
     console.log('Returning ' + retVal);
     ime_api.keyEventHandled(keyData.requestId, retVal);
     return retVal;
-});
-
-chrome.browserAction.onClicked.addListener(function() {
-    console.log('browserActionOnClick:');
-
-    extensionToggle++;
-    if (extensionToggle > 3){
-        extensionToggle = 1;
-    }
-
-    switch(extensionToggle) {
-    case 2:
-        chrome.browserAction.setBadgeText({text: "DICT"});
-        break;
-    case 3:
-        chrome.browserAction.setBadgeText({text: "OFF"});
-        break;
-    default:
-        chrome.browserAction.setBadgeText({text: "ON"});
-    }
 });
