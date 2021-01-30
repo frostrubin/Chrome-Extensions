@@ -1,4 +1,4 @@
-This text contains german umlauts.
+This text contains german Umlauts.
 
 It was typed on an american (EN-US) keyboard layout.
 
