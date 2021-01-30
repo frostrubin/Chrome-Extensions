@@ -1,7 +1,7 @@
 var extensionToggle = 1;
 
 chrome.action.onClicked.addListener(function() {
-    console.log('action.OnClick:');
+    //console.log('action.OnClick:');
 
     extensionToggle++;
     if (extensionToggle > 2){
@@ -43,7 +43,7 @@ var UmlautKeyCombinationHelper = {
 
         // Append to memory
         this.memory += keyData.key
-        console.log('UmlautKeyCombinationHelperMemory ' + this.memory);    
+        //console.log('UmlautKeyCombinationHelperMemory ' + this.memory);    
 
         // Find Replacement Character
         var newChar = this.dictionary[this.memory];
@@ -85,7 +85,7 @@ var SharpSHelper = {
 
         // Append to memory
         this.memory += keyData.key;
-        console.log('UmlautKeyCombinationHelperMemory ' + this.memory); 
+        //console.log('UmlautKeyCombinationHelperMemory ' + this.memory); 
 
         // Look up replacement
         if (this.memory == this.search) {
@@ -134,7 +134,7 @@ var EuroSignHelper = {
 }
 
 ime_api.onFocus.addListener(function(context) {
-    console.log('onFocus:' + context.contextID);
+    //console.log('onFocus:' + context.contextID);
     switch(context.type) {
         case 'text':
         case 'search':
@@ -146,14 +146,14 @@ ime_api.onFocus.addListener(function(context) {
         case 'password':
             return;
         default:
-            console.log('Unknown context.type ' + context.type);
+            //console.log('Unknown context.type ' + context.type);
             return;
     }
     context_id = context.contextID;
 });
 
 ime_api.onBlur.addListener(function(contextID) {
-    console.log('onBlur:' + contextID);
+    //console.log('onBlur:' + contextID);
     context_id = -1;
 });
 
@@ -166,7 +166,7 @@ ime_api.onBlur.addListener(function(contextID) {
 //});
 
 ime_api.onKeyEvent.addListener(function(engineID, keyData) {
-    console.log('onKeyEvent:' + keyData.key + " context: " + context_id);
+    //console.log('onKeyEvent:' + keyData.key + " context: " + context_id);
     if (context_id == -1) {
         return false;
     }
@@ -187,7 +187,7 @@ ime_api.onKeyEvent.addListener(function(engineID, keyData) {
     }
 
     var retVal = result.includes(true);
-    console.log('Returning ' + retVal);
+    //console.log('Returning ' + retVal);
     ime_api.keyEventHandled(keyData.requestId, retVal);
     return retVal;
 });
